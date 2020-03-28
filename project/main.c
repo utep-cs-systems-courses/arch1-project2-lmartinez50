@@ -2,7 +2,7 @@
  * Programmer: Lorenzo Martinez
  * Creation Date: 03/04/2020
  * Due date: 03/25/2020
- * Project 2 Buzzer - Piano
+ * Project 2 My Buzzer - Piano
  * CS 3432 Computer Arch I
  * Rev. 1 03/04/2020 Initial approach. Playing with leds.
  * Rev. 2 03/06/2020 Playing with switches and buzzer.
@@ -17,7 +17,6 @@
 #include "led.h"
 #include "switches.h"
 #include "buzzer.h"
-#include "lcdutils.h"
 #include "lcddraw.h"
 
 int main(void)
@@ -52,10 +51,9 @@ int main(void)
     drawString5x7(10,70, "SW 1. La Bamba", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,80, "SW 2. Stars Wars", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,90, "SW 3. La Cucaracha", COLOR_WHITE, COLOR_BLUE);
-    drawString5x7(10,100, "SW 4. Stop Music", COLOR_WHITE, COLOR_BLUE);
+    drawString5x7(10,100, "SW 4. Stop/Dim LED", COLOR_WHITE, COLOR_BLUE);
     buzzer_init();
     led_init();
-    //enableWDTInterrupts(); //Enable Watch Dog Timer
 
     or_sr(0x18);          // CPU off, GIE on
 
