@@ -11,4 +11,7 @@ song.
 Button S1 plays notes from La Bamba song by Los Lobos.
 Button S2 plays notes from Star Wars theme song.
 Button S3 plays notes from La Cucaracha song
-Button S4 stop the program and turn on and then dimming the red led indicating that the toy is "off".
+Button S4 stop the program and turn on and then dimming the red led indicating
+that the toy is "off".
+
+To clean project use make clean.
