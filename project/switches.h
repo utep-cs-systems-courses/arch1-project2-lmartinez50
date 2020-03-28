@@ -8,8 +8,5 @@
 #define SWITCHES (SW1|SW2|SW3|SW4)  //initialize all switches
 
 void switch_init();
-void switch_interrupt_handler();
-
-extern char switch_state_down, switch_state_changed, tempo; /* effectively boolean */
 
 #endif // included
