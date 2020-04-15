@@ -61,8 +61,7 @@ void state_advance() {
 
         // If switch 1 is pressed start playing La Bamba
         case 1:
-            //Play La Bamba
-            //laBamba();
+            //Toggle leds
             toggle();
             switch_state_down = 1;
             break;
