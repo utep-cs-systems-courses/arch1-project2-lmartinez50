@@ -7,6 +7,8 @@
 #include "lcdutils.h"
 
 char switch_state_down, switch_state_changed;
+char switch0, switch1, switch2, switch3, switch4;
+extern void toggle();
 
 static char switch_update_interrupt_sense()
 {
@@ -17,43 +19,78 @@ static char switch_update_interrupt_sense()
   return p2val;
 }
 
-void state_advance() {
+static char switch_option() {
 
     char p2val = switch_update_interrupt_sense();
+    char switchState = 0;
 
-      /* Initial State */
-      if(p2val & SW1 && p2val & SW2 && p2val & SW3 && p2val & SW4){
-        buzzer_set_period(0);
-        switch_state_down = 0;
-      }
+    if(p2val & SW1 && p2val & SW2 && p2val & SW3 && p2val & SW4){
+        switchState = 0;
+        return 0;
+    }
+    else if (!(p2val & SW1)){
+        switchState = 1;
+        return 1;
+    }
+    else if (!(p2val & SW2)){
+        switchState = 2;
+        return 2;
+    }
+    else if (!(p2val & SW3)){
+        switchState = 3;
+        return 3;
+    }
+    else if (!(p2val & SW4)){
+        switchState = 4;
+        return 4;
+    }
+    else return 0;
+}
 
-      /* If switch 1 is pressed start playing La Bamba */
-      else if(!(p2val & SW1)){
-          //Play La Bamba
-          laBamba();
-          switch_state_down = 1;
-      }
 
-      /* If switch 2 is pressed start playing the Star Wars Theme */
-      else if(!(p2val & SW2)){
-          //Play Star Wars
-          starWarsTheme();
-          switch_state_down = 1;
-      }
+void state_advance() {
 
-      /* If switch 3 is pressed start playing La Cucaracha */
-      else if(!(p2val & SW3)){
-          //Play La Cucaracha
-          laCucaracha();
-          switch_state_down = 1;
-      }
+    char switchState = switch_option();
 
-      /* If switch 4 is pressed music stops and dim red led */
-      else if(!(p2val & SW4)){
-          //Stop music
-          buzzer_set_period(0);
-          switch_state_down = 0;
-      }
+    switch (switchState) {
+        // Initial State
+        case 0:
+            buzzer_set_period(0);
+            switch_state_down = 0;
+            break;
+
+        // If switch 1 is pressed start playing La Bamba
+        case 1:
+            //Play La Bamba
+            //laBamba();
+            toggle();
+            switch_state_down = 1;
+            break;
+
+        //If switch 2 is pressed start playing the Star Wars Theme
+        case 2:
+            //Play Star Wars
+            starWarsTheme();
+            reset_state();
+            switch_state_down = 1;
+            break;
+
+        //If switch 3 is pressed start playing La Cucaracha
+        case 3:
+            //Play La Cucaracha
+            laCucaracha();
+            reset_state();
+            switch_state_down = 1;
+            break;
+
+        //If switch 4 is pressed music stops and dim red led
+        case 4:
+            //Stop music
+            buzzer_set_period(0);
+            reset_state();
+            switch_state_down = 0;
+            break;
+    }
 
       if(switch_state_down){
           switch_state_changed = 1;
@@ -67,6 +104,37 @@ void state_advance() {
 
 }
 
+/*
+void toggle() {
+
+    static char state = 0;
+
+    switch (state) {
+    case 0:
+        red_on   = 0;
+        green_on = 0;
+        state    = 1;
+        break;
+    case 1:
+        red_on   = 0;
+        green_on = 1;
+        state    = 2;
+        break;
+    case 2:
+        red_on   = 1;
+        green_on = 0;
+        state    = 3;
+        break;
+    case 3:
+        red_on   = 1;
+        green_on = 1;
+        state    = 0;
+        break;
+  }
+}
+*/
+
+//This function dim red led
 void dim_led(){
 
         unsigned int j;
@@ -74,7 +142,7 @@ void dim_led(){
         for(j = 1; j < 1200; j++)    // Increasing Intensity
         {
             P1OUT |= LED_RED;         // LED ON
-            delay(j);               // Delay for ON Time
+            delay(j);                 // Delay for ON Time
             P1OUT &= ~LED_RED;        // LED OFF
             delay(1200-j);           // OFF Time = Period - ON Time
         }
@@ -95,3 +163,10 @@ void delay(unsigned int t)          // Custom delay function
     for(i = t; i > 0; i--)
         __delay_cycles(1);          // __delay_cycles accepts only constants !
 }
+
+void reset_state() {
+    red_on = 0;
+    green_on = 0;
+    led_update();
+}
+

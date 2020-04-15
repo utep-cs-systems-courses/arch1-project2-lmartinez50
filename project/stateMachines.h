@@ -3,8 +3,11 @@
 
 extern char switch_state_down, switch_state_changed; /* effectively boolean */
 
+
 void state_advance();
-void dim_led();         /* dim led */
+void reset_state();
+void dim_led();         /* dim red led */
+void dim_green_led();  /* dim green led*/
 void delay();
 
 #endif // included

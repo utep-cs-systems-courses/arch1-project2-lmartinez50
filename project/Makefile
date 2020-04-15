@@ -23,7 +23,7 @@ all:
 
 
 
-project2.elf: ${COMMON_OBJECTS} buzzer.o p2_interrupt_handler.o stateMachines.o led.o switches.o main.o ../project/lib/libTimer.a ../project/lib/libLcd.a
+project2.elf: ${COMMON_OBJECTS} buzzer.o p2_interrupt_handler.o stateMachines.o toggle.o led.o switches.o main.o ../project/lib/libTimer.a ../project/lib/libLcd.a
 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
