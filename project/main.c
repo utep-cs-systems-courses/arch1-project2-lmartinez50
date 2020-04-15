@@ -9,6 +9,7 @@
  * Rev. 3 03/07/2020 Putting it all together, leds, switches and buzzer. Starting buzzer - piano project.
  * Rev. 4 03/08/2020 Translating notes song to frequencies using periods. Adding functionality.
  * Rev. 5 03/09/2020 Playing with display. Adding functionality
+ * Rev. 6 04/14/2020 Adding assembly file 
  **/
 
 #include <lcdutils.h>
@@ -23,7 +24,7 @@ int main(void)
 {
 
     configureClocks();
-    switch_init();
+    switch_init();  //Initialize switches
     lcd_init();     //Initialize LCD display
     clearScreen(COLOR_BLUE);
     drawRectOutline(0, 0, 127, 158,COLOR_WHITE);
@@ -52,8 +53,8 @@ int main(void)
     drawString5x7(10,80, "SW 2. Stars Wars", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,90, "SW 3. La Cucaracha", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,100, "SW 4. Stop/Dim LED", COLOR_WHITE, COLOR_BLUE);
-    buzzer_init();
-    led_init();
+    buzzer_init();        //Initialize buzzer
+    led_init();           //Initialize leds
 
     or_sr(0x18);          // CPU off, GIE on
 
