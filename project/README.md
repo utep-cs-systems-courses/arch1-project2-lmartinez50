@@ -9,7 +9,8 @@ MSP430. Also I use the lcd display to display some cool messages and an image.
 I use the four buttons from the MSP430 on Port 2 to play a note of a different
 song.
 
-Button S1 blinks leds in silly pattern.
+Button S1 count from zero to three displaying the value in binary using the on
+board red and green led.
 Button S2 plays notes from Star Wars theme song.
 Button S3 plays notes from La Cucaracha song
 Button S4 stop the program and turn on and then dimming the red led indicating
