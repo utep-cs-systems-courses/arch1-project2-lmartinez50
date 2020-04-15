@@ -59,7 +59,7 @@ void state_advance() {
             switch_state_down = 0;
             break;
 
-        // If switch 1 is pressed start playing La Bamba
+        // If switch 1 is pressed start counter 0 - 3
         case 1:
             //Toggle leds
             toggle();
@@ -84,7 +84,7 @@ void state_advance() {
 
         //If switch 4 is pressed music stops and dim red led
         case 4:
-            //Stop music
+            //Stop music/Dim led
             buzzer_set_period(0);
             reset_state();
             switch_state_down = 0;
