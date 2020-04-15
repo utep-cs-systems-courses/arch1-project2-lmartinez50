@@ -48,7 +48,7 @@ int main(void)
     drawString5x7(89,32, "A", COLOR_BLACK,COLOR_WHITE);
     drawString5x7(103,32, "B", COLOR_BLACK,COLOR_WHITE);
     drawString5x7(10,50, "My Blink - Piano", COLOR_WHITE, COLOR_BLUE);
-    drawString5x7(10,70, "SW 1. Blink Leds", COLOR_WHITE, COLOR_BLUE);
+    drawString5x7(10,70, "SW 1. Counter 0-3", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,80, "SW 2. Stars Wars", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,90, "SW 3. La Cucaracha", COLOR_WHITE, COLOR_BLUE);
     drawString5x7(10,100, "SW 4. Stop/Dim LED", COLOR_WHITE, COLOR_BLUE);
